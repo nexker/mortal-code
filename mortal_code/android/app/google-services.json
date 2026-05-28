@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "850502120645",
+    "project_id": "mortal-code",
+    "storage_bucket": "mortal-code.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:850502120645:android:a4e8557cb0f06264c82cac",
+        "android_client_info": {
+          "package_name": "com.mortalcode.mortal_code"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCgwPkOHU1pjPkxpxFg0W-E-pE7Pcif2K0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

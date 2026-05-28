@@ -1,0 +1,24 @@
+# Flutter
+mortal_code/.dart_tool/
+mortal_code/.flutter-plugins
+mortal_code/.flutter-plugins-dependencies
+mortal_code/build/
+mortal_code/.packages
+
+# Firebase
+mortal_code/google-services.json
+
+# Python
+backend/venv/
+backend/__pycache__/
+backend/*.pyc
+
+# Entorno
+backend/.env
+
+# Android
+mortal_code/android/.gradle/
+mortal_code/android/local.properties
+
+# VS Code
+.vscode/
