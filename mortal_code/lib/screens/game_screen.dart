@@ -3,6 +3,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import '../services/game_service.dart';
 import '../services/firestore_service.dart';
+import '../services/audio_service.dart';
 
 class GameScreen extends StatefulWidget {
   const GameScreen({super.key});
@@ -15,6 +16,7 @@ class _GameScreenState extends State<GameScreen>
     with TickerProviderStateMixin {
   final GameService _gameService = GameService();
   final FirestoreService _firestoreService = FirestoreService();
+  final AudioService _audioService = AudioService();
 
   int _nivel = 1;
   String _nombreNivel = 'Variables';
@@ -38,7 +40,7 @@ class _GameScreenState extends State<GameScreen>
   late AnimationController _deathController;
   late AnimationController _computerController;
 
-  @override
+@override
   void initState() {
     super.initState();
     _deathController = AnimationController(
@@ -49,6 +51,8 @@ class _GameScreenState extends State<GameScreen>
       vsync: this,
       duration: const Duration(milliseconds: 800),
     );
+    _audioService.init();
+    _audioService.reproducirMusica();
   }
 
   @override
@@ -65,6 +69,7 @@ class _GameScreenState extends State<GameScreen>
   void dispose() {
     _deathController.dispose();
     _computerController.dispose();
+    _audioService.detenerMusica();
     super.dispose();
   }
 
@@ -119,8 +124,13 @@ Future<void> _responder(String opcion) async {
 
     final bool correcto = resultado['correcto'] == true;
 
-    if (correcto) _correctas++;
-    else setState(() => _vidas--);
+    if (correcto) {
+      _correctas++;
+      _audioService.sonidoCorrecto();
+    } else {
+      setState(() => _vidas--);
+      _audioService.sonidoIncorrecto();
+    }
 
     setState(() {
       _resultadoCorrecto = correcto;
@@ -129,7 +139,9 @@ Future<void> _responder(String opcion) async {
     });
 
     if (!correcto && _vidas <= 0) {
-      // No avanzar, esperar botón continuar para mostrar muerte
+      await Future.delayed(const Duration(milliseconds: 800));
+      _audioService.sonidoGameOver();
+      _mostrarMuerte();
     }
   } catch (e) {
     setState(() {
@@ -165,6 +177,7 @@ void _continuarSiguientePregunta() {
   }
 
   Future<void> _completarNivel() async {
+    _audioService.sonidoNivelCompleto();
     await _firestoreService.actualizarProgreso(_nivel);
     setState(() => _nivelCompletado = true);
   }
