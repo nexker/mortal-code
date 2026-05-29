@@ -608,31 +608,3 @@ Widget _buildPrimeraPersona() {
     );
   }
 }
-
-class _ParedPainter extends CustomPainter {
-  @override
-  void paint(Canvas canvas, Size size) {
-    final paint = Paint()
-      ..color = const Color(0xFF1A1A1A)
-      ..strokeWidth = 1;
-    for (double y = 0; y < size.height; y += 30) {
-      canvas.drawLine(Offset(0, y), Offset(size.width, y), paint);
-    }
-    for (double y = 0; y < size.height; y += 60) {
-      for (double x = 0; x < size.width; x += 80) {
-        canvas.drawLine(Offset(x, y), Offset(x, y + 30), paint);
-      }
-      for (double x = 40; x < size.width; x += 80) {
-        canvas.drawLine(Offset(x, y + 30), Offset(x, y + 60), paint);
-      }
-    }
-    final grietaPaint = Paint()
-      ..color = const Color(0xFF333333)
-      ..strokeWidth = 1.5;
-    canvas.drawLine(const Offset(100, 20), const Offset(120, 80), grietaPaint);
-    canvas.drawLine(const Offset(300, 10), const Offset(280, 70), grietaPaint);
-  }
-
-  @override
-  bool shouldRepaint(_ParedPainter oldDelegate) => false;
-}
