@@ -68,7 +68,7 @@ class CreditsScreen extends StatelessWidget {
                 '• Nelson Ayala, Daniel Palencia - Programadores.',
                 '• Nelson Ayala, Daniel Palencia - Diseñador Gráfico.',
                 '• Nelson Ayala, Daniel Palencia, Michaell Romero - Documentacion.',
-                '• Juan Osorio, Daniel Palencia, Michaell Romero, Camilo Salamanca- Tester & QA.',
+                '• Nelson Ayala, Juan Osorio, Daniel Palencia, Michaell Romero, Camilo Salamanca- Tester & QA.',
               ],
               delay: 400,
             ),
